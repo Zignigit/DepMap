@@ -29,18 +29,20 @@ for i in cell_ids:
 print()
 print(f'Из списка сенситивных клеток от Вити в базе {base_name} были найдены клетки:')
 print(*sensitive_genes_lst)
-
+print()
 print(proteomics.head())
-
+print()
 sens_lst = list(sensitive_depmap_ids)
 rest_lst = list(resist_depmap_ids)
-print(sens_lst)
-print(rest_lst)
+# print(sens_lst)
+# print(rest_lst)
+print('________')
 gene_names = list(proteomics.keys())[1:]
 proteomics_compare = Comparison(proteomics, sens_lst, rest_lst)
 
-#proteomics_compare.show_median(min_value=0.4, max_value=0.5)
-#proteomics_compare.show_values(min_value=0.3)
+proteomics_compare.show_median(min_value=0.4, max_value=0.5)
+proteomics_compare.show_values(min_value=2, max_value=10)
 proteomics_compare.show_custom(cell='ACH-000707', attr='p90RSK_pT359_S363')
-
+proteomics_compare.show_average_t_test(sort_method='pval')
+proteomics_compare.show_average_t_test(sort_method='mean')
 
